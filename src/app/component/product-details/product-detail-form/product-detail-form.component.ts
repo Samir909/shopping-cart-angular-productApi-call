@@ -21,30 +21,26 @@ export class ProductDetailFormComponent implements OnInit {
   ngOnInit(): void {
   
     this.exform=this.formbuilder.group({
-      productTitle:[''],
-      ProductDescription:[''],
-      productPicture:[''],
-      ProductPrice:[''],
-      avatar:[null]
+      productTitle:['',[Validators.required]],
+      ProductDescription:['',[Validators.required]],
+      productPicture:['',[Validators.required]],
+      ProductPrice:['',[Validators.required]]
     })
-    this.exform= new FormGroup({
-      'productTitle' : new FormControl(null,Validators.required),
-      'ProductDescription' : new FormControl(null,Validators.required),
-      'productPicture' : new FormControl(null,Validators.required),
-      'ProductPrice' : new FormControl(null,Validators.required),
+    // this.exform= new FormGroup({
+    //   'productTitle' : new FormControl(null,Validators.required),
+    //   'ProductDescription' : new FormControl(null,Validators.required),
+    //   'productPicture' : new FormControl(null,Validators.required),
+    //   'ProductPrice' : new FormControl(null,Validators.required),
 
-    });
+    // });
   }
   
 
   addProduct(){
-    this.productDetailObj.ProductTitle=this.exform.value.productTitle;
-    this.productDetailObj.ProductDescription=this.exform.value.ProductDescription;
-    this.productDetailObj.productID=0;
-    this.productDetailObj.ProductPrice=this.exform.value.ProductPrice;
-    this.productDetailObj.productPicture=this.exform.value.productPicture;
+    this.productDetailObj = this.exform.value;
+    this.productDetailObj = Object.assign(this.productDetailObj,this.exform.value);
 
-    console.log(this.productDetailObj.ProductTitle=this.exform.value.productTitle);
+    console.log(this.productDetailObj);
 
     this.service.postProductDetail(this.productDetailObj)
     .subscribe(res=>{
