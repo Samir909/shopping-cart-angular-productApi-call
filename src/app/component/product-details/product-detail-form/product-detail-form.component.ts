@@ -12,11 +12,17 @@ import { ProductDetail } from 'src/app/model/product-detail.model';
 })
 export class ProductDetailFormComponent implements OnInit {
 
+  selectedFile:any =null;
+
   exform : FormGroup;
   productDetailObj: ProductDetail = new ProductDetail();
 
   constructor(public service : ProductDetailService,
               private formbuilder: FormBuilder) { }
+
+  onFileSelector(event:any){
+    this.selectedFile= <File>event.target.files[0];
+   }
 
   ngOnInit(): void {
   
@@ -36,13 +42,19 @@ export class ProductDetailFormComponent implements OnInit {
   }
   
 
+
   addProduct(){
-    this.productDetailObj = this.exform.value;
-    this.productDetailObj = Object.assign(this.productDetailObj,this.exform.value);
+    // this.productDetailObj = this.exform.value;
+    // this.productDetailObj = Object.assign(this.productDetailObj,this.exform.value);
+    const fd=new FormData();
+    fd.append('productPicture',this.selectedFile,this.selectedFile.name);
+    fd.append('productTitle',this.exform.value.productTitle);
+    fd.append('ProductDescription',this.exform.value.ProductDescription);
+    fd.append('ProductPrice',this.exform.value.ProductPrice);
 
-    console.log(this.productDetailObj);
+    
 
-    this.service.postProductDetail(this.productDetailObj)
+    this.service.postProductDetail(fd)
     .subscribe(res=>{
       console.log(res);
       alert("Product Details added successfully");

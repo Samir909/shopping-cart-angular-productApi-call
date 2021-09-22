@@ -57,7 +57,9 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>product Picture</label>
-            <input formControlName="productPicture"  type="file" class="form-control form-control-lg" placeholder="product Picture" name="productPicture">
+            <!-- (change)="handleFileInput($event.target.file)" -->
+            <input formControlName="productPicture"  type="file" accept="image/"  class="form-control form-control-lg" placeholder="product Picture" name="productPicture"
+            (change)="onFileSelector($event)">
             <small *ngIf="exform.get('productPicture').invalid && exform.get('productPicture').touched" class="text-danger">product Picture is Required</small>
         </div>
     
