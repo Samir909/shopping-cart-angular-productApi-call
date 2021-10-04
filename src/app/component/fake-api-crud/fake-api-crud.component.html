@@ -1,0 +1,79 @@
+<div class="jumbotron py-3">
+    <h1 class="display-4" style="text-align: center;">Product Details Register</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="container">
+            <form [formGroup]="exform">
+                <!-- <input type="hidden" name="productID" value="0"> -->
+                <div class="form-group">
+                    <label>Product Title</label>
+                    <input formControlName="productTitle" type="text" name="productTitle" class="form-control form-control-lg" placeholder="product Title" name="ProductTitle">
+                    <small *ngIf="exform.get('productTitle').invalid && exform.get('productTitle').touched" class="text-danger">product Title is Required</small>
+                </div>
+            
+                <div class="form-group">
+                    <label>Product Description</label>
+                    <input  formControlName="ProductDescription" name="ProductDescription" type="text" class="form-control form-control-lg" placeholder="Product Description" name="ProductDescription">
+                    <small *ngIf="exform.get('ProductDescription').invalid && exform.get('ProductDescription').touched" class="text-danger">Product Description is Required</small>
+                </div>
+            
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>product Picture</label>
+                        <!-- (change)="handleFileInput($event.target.file)" -->
+                        <input formControlName="productPicture"  type="file" accept="image/" name="productPicture" class="form-control form-control-lg" placeholder="product Picture" name="productPicture"
+                        (change)="onFileSelector($event)">
+                        <small *ngIf="exform.get('productPicture').invalid && exform.get('productPicture').touched" class="text-danger">product Picture is Required</small>
+                    </div>
+                
+                    <div class="form-group col-md-6">
+                        <label>ProductPrice</label>
+                        <input formControlName="ProductPrice" name="ProductPrice"  type="number" class="form-control form-control-lg" placeholder="Product Price"  name="ProductPrice">
+                        <small *ngIf="exform.get('ProductPrice').invalid && exform.get('ProductPrice').touched" class="text-danger">Product Price is Required</small>
+                    </div>
+                </div>
+            
+                <button *ngIf="buttonShow==0" (click)="addProduct()" [disabled]="exform.invalid" class="btn btn-info btn-lg btn-block" type="submit">submit</button>
+                <!-- <div class="form-group">
+                    <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">submit</button>
+                </div> -->
+                <button *ngIf="buttonShow==1" (click)="updateProductDetail()" [disabled]="exform.invalid" class="btn btn-info btn-lg btn-block" type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6">
+       <table class="table">
+           <thead class="thead-light">
+               <tr>
+                   <th>productTitle</th>
+                   <th>ProductDescription</th>
+                   <th>ProductPrice</th>
+                   <th>productPicture</th>
+                   <th></th>
+               </tr>
+
+           </thead>
+
+           <tbody>
+               <tr *ngFor="let pd of productData">
+                <td>{{pd.title}}</td>
+                <td>{{pd.description}}</td>
+                <td>{{pd.price}}</td>
+                <td><img src={{pd.image}} width="50px" height="60px"></td>
+                   <td>
+                       <!-- <i class="far fa-trash-alt fa-lg text-danger"></i> -->
+                    
+                       <button (click)="onEdit(pd)" class="btn btn-primary mx-3">Edit</button>
+                       <button (click)="deleteProduct(pd)" class="btn btn-danger mx-3">Delete</button>
+                   </td>
+
+               </tr>
+           </tbody>
+       </table>
+    </div>
+</div>
+
+
+

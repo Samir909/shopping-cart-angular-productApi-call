@@ -10,7 +10,9 @@ import { ProductsComponent } from './component/products/products.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailsComponent } from './component/product-details/product-details.component';
 import { ProductDetailFormComponent } from './component/product-details/product-detail-form/product-detail-form.component';
-
+import { FakeApiCRUDComponent } from './component/fake-api-crud/fake-api-crud.component';
+import * as $ from "jquery";
+import { ModalModule } from 'ngb-modal';
 
 @NgModule({
   declarations: [
@@ -19,14 +21,16 @@ import { ProductDetailFormComponent } from './component/product-details/product-
     CartComponent,
     ProductsComponent,
     ProductDetailsComponent,
-    ProductDetailFormComponent
+    ProductDetailFormComponent,
+    FakeApiCRUDComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

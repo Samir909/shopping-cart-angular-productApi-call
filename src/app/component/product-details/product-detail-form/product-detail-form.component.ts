@@ -58,25 +58,13 @@ export class ProductDetailFormComponent implements OnInit {
     .subscribe(res=>{
       console.log(res);
       alert("Product Details added successfully");
+      this.exform.reset();
     },
     err=>{
       alert("Something is wrong")
     })
   }
 
-  // clicksub(){
-  //   console.log(this.exform.value)
-  //   this.exform.reset();
-  // }
 
-  // onSubmit(form:NgForm){
-  //   this.service.postProductDetail().subscribe(
-  //     res=>{
-        
-  //     },
-  //     err=>{console.log(err); }
-  //  );
-  //   //console.log(form);
-  // }
 
 }

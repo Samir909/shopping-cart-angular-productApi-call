@@ -4,6 +4,7 @@ export class ProductDetail {
     ProductTitle:string='';
     ProductDescription:string='' ;
     ProductPrice: number=0;
+    category:string='electronic'; //optional
 
 
 

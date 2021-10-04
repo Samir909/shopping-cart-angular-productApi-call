@@ -11,6 +11,7 @@ export class ProductDetailService {
   constructor(private http:HttpClient) { }
 
   readonly baseURL='https://localhost:44315/api/ProductDetail'
+  list: ProductDetail[];
   // formData: ProductDetail =new ProductDetail();
 
   // postProductDetail(){
@@ -25,5 +26,28 @@ export class ProductDetailService {
       return res;
     }))
   }
+
+
+getProductDeails(){
+  return this.http.get<any>(this.baseURL)
+  .pipe(map((res:any)=>{
+    return res;
+  }))
+}
+
+updateProductDetails(data:any,id:number){
+
+  return this.http.put<any>("https://localhost:44315/api/ProductDetail"+id,data)
+  .pipe(map((res:any)=>{
+    return res;
+  }))
+}
+
+deleteProductDetails(id:number){
+  return this.http.delete<any>(`${this.baseURL}/${id}`)
+  .pipe(map((res:any)=>{
+    return res;
+  }))
+}
 
 }

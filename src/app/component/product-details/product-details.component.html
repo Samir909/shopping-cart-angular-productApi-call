@@ -9,6 +9,32 @@
         </div>
     </div>
     <div class="col-md-6">
-        <span>develop later</span>
+       <table class="table">
+           <thead class="thead-light">
+               <tr>
+                   <th>productTitle</th>
+                   <th>ProductDescription</th>
+                   <th>ProductPrice</th>
+                   <th>productPicture</th>
+                   <th></th>
+               </tr>
+
+           </thead>
+
+           <tbody>
+               <tr *ngFor="let pd of productData">
+                   <td (click)="populateForm(pd)">{{pd.productTitle}}</td>
+                   <td (click)="populateForm(pd)">{{pd.productDescription}}</td>
+                   <td (click)="populateForm(pd)">{{pd.productPrice}}</td>
+                   <td (click)="populateForm(pd)"><img src={{pd.productImage}}></td>
+                   <td>
+                       <!-- <i class="far fa-trash-alt fa-lg text-danger"></i> -->
+                       <button (click)="deleteProduct(pd)"class="btn btn-primary mx-3">Edit</button>
+                       <button (click)="deleteProduct(pd)"class="btn btn-danger mx-3">Delete</button>
+                   </td>
+
+               </tr>
+           </tbody>
+       </table>
     </div>
 </div>
